@@ -3,27 +3,10 @@ const express = require('express');
 const { createClient } = require('@supabase/supabase-js');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
-const cors = require('cors');
 
 const app = express();
 const port = process.env.PORT || 3000;
 
-const allowedOrigins = [
-  'http://localhost:4321',
-  'https://finanzassalvajes.com',
-];
-
-app.use(cors({
-  origin: (origin, callback) => {
-    if (allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-}));
 
 // using morgan for logs
 app.use(morgan('combined'));
